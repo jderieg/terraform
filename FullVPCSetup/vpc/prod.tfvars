@@ -1,0 +1,9 @@
+vpc_name = "prod_vpc"
+region = "us-west-1"
+vpc_cidr = "10.3.0.0/20"
+az_list = ["us-west-1a", "us-west-1b", "us-west-1c"]
+pubsub_list = ["10.3.0.0/24", "10.3.2.0/24", "10.3.3.0/24"]
+privsub_list = ["10.3.4.0/24", "10.3.5.0/24", "10.3.6.0/24"]
+pub_ipv6_prefixlist = [0, 1, 2]
+priv_ipv6_prefixlist = [3, 4, 5]
+environment_tag = "production"
