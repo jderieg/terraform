@@ -44,17 +44,17 @@ resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole" {
 }
 
 ##### Container Template
-data "template_file" "docker_app" {
-  template = file("./docker.json")
-  vars = {
-    app_name = var.docker_app_name
-    app_image = var.docker_app_image
-    app_port = var.docker_app_port
-    fargate_cpu = var.docker_fargate_cpu
-    fargate_memory = var.docker_fargate_memory
-    aws_region = var.region
-  }
-}
+#data "template_file" "docker_app" {
+#  template = file("./docker.json")
+#  vars = {
+#    app_name = var.docker_app_name
+#    app_image = var.docker_app_image
+#    app_port = var.docker_app_port
+#    fargate_cpu = var.docker_fargate_cpu
+#    fargate_memory = var.docker_fargate_memory
+#    aws_region = var.region
+#  }
+#}
 
 ##### ECS task definition
 resource "aws_ecs_task_definition" "docker_app" {
@@ -64,7 +64,19 @@ resource "aws_ecs_task_definition" "docker_app" {
   requires_compatibilities = ["FARGATE"]
   cpu = var.docker_fargate_cpu
   memory = var.docker_fargate_memory
-  container_definitions = data.template_file.docker_app.rendered
+  container_definitions = jsonencode([{
+    name : "${var.docker_app_name}",
+    image : "${var.docker_app_image}",
+    cpu : var.docker_fargate_cpu,
+    memory : var.docker_fargate_memory,
+    networkMode : "awsvpc",
+    portMappings : [
+      {
+        containerPort: var.docker_app_port
+        hostPort: var.docker_app_port
+      }
+    ]
+  }])
 }
 
 ##### ECS Service
@@ -98,8 +110,8 @@ resource "aws_security_group" "aws-lb" {
   vpc_id = module.new_vpc.vpc_id
   ingress {
     protocol = "tcp"
-    from_port = var.docker_app_port
-    to_port = var.docker_app_port
+    from_port = var.alb_frontend_port
+    to_port = var.alb_frontend_port
     cidr_blocks = var.app_sources_cidr
   }
   egress {
@@ -165,7 +177,7 @@ resource "aws_alb_target_group" "docker_app" {
 # Redirect all traffic from the ALB to the target group
 resource "aws_alb_listener" "front_end" {
   load_balancer_arn = aws_alb.main.id
-  port = var.docker_app_port
+  port = var.alb_frontend_port
   protocol = "HTTP"
   default_action {
     target_group_arn = aws_alb_target_group.docker_app.id
@@ -175,5 +187,5 @@ resource "aws_alb_listener" "front_end" {
 # output docker public ip
 output "docker_dns_lb" {
   description = "DNS load balancer"
-  value = aws_alb.main.dns_name
+  value = "${aws_alb.main.dns_name}:${var.alb_frontend_port}"
 }

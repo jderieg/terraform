@@ -4,11 +4,6 @@ variable "app_name" {
   description = "Application name"
 }
 
-variable "admin_sources_cidr" {
-  type = list(string)
-  description = "List of IPv4 CIDR blocks from which to allow admin access"
-}
-
 variable "app_sources_cidr" {
   type = list(string)
   description = "List of IPv4 CIDR blocks from which to allow application access"
@@ -30,6 +25,11 @@ variable "docker_app_port" {
   default = 80
 }
 
+variable "alb_frontend_port" {
+  description = "Port used by the ALB listener frontend"
+  default = 80
+}
+
 variable "docker_app_count" {
   description = "Number of Docker containers to run"
   default = 2
@@ -37,10 +37,10 @@ variable "docker_app_count" {
 
 variable "docker_fargate_cpu" {
   description = "Fargate instance CPU units to provision (1 vCPU = 1024 CPU units)"
-  default = "1024"
+  default = 1024
 }
 
 variable "docker_fargate_memory" {
   description = "Fargate instance memory to provision (in MiB)"
-  default = "2048"
+  default = 2048
 }

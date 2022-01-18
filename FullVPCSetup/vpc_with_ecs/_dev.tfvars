@@ -10,11 +10,10 @@ priv_ipv6_prefixlist = [3, 4, 5]
 environment_tag      = "dev"
 aws_profile          = "default" # Your aws profile in the ~/.aws/credentials file
 
-##### NGINX App Vars
-key_pair_name        = "main_ssh" # <-- name of your pre-built aws ec2 keypair for ecs cluster runner
+##### Docker App Vars
 app_name             = "jdapp-dev" # Do not enter any spaces
-app_sources_cidr     = ["173.239.226.43/32"] # Specify a list of IPv4 IPs/CIDRs which can access app load balancers
-admin_sources_cidr   = ["173.239.226.43/32"] # Specify a list of IPv4 IPs/CIDRs which can admin instances
-docker_app_image      = "elastichq/elasticsearch-hq:latest"
+app_sources_cidr     = ["191.101.61.197/32"] # Specify a list of IPv4 IPs/CIDRs which can access app load balancers
+docker_app_image     = "elastichq/elasticsearch-hq:latest"
 docker_app_name      = "elastichq" # Whatever you want to call it
-docker_app_port      = "5000" # Port that your docker app is expecting to be connected on
+docker_app_port      = 5000 # Port that your docker app is expecting connection on - keep unquoted or json will fail decoding
+alb_frontend_port    = "80"
