@@ -1,9 +1,0 @@
-vpc_name = "dev_vpc"
-region = "us-east-2"
-vpc_cidr = "10.1.0.0/20"
-az_list = ["us-east-2a", "us-east-2b", "us-east-2c"]
-pubsub_list = ["10.1.0.0/24", "10.1.2.0/24", "10.1.3.0/24"]
-privsub_list = ["10.1.4.0/24", "10.1.5.0/24", "10.1.6.0/24"]
-pub_ipv6_prefixlist = [0, 1, 2]
-priv_ipv6_prefixlist = [3, 4, 5]
-environment_tag = "dev"
