@@ -60,6 +60,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: ./MAIN/vpc_with_ecs
 
     steps:
     # Checkout the repository to the GitHub Actions runner
