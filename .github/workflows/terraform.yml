@@ -67,7 +67,7 @@ jobs:
     - name: write secrets
       run: |
           mkdir /root/.aws
-          echo $aws_profile > /root/.aws/credentials
+          # echo $aws_profile > /root/.aws/credentials
       env:
         aws_profile : ${{secrets.AWS_PROFILE}}
     
