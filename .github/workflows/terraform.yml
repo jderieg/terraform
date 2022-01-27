@@ -66,8 +66,8 @@ jobs:
     # Write aws creds file
     - name: write secrets
       run: |
-          /bin/bash mkdir ~/.aws
-          /bin/bash echo $aws_profile > ~/.aws/credentials
+          mkdir /root/.aws
+          echo $aws_profile > /root/.aws/credentials
       env:
         aws_profile : ${{secrets.AWS_PROFILE}}
     
