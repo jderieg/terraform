@@ -59,15 +59,15 @@ jobs:
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
-        shell: sh
+        shell: bash
         working-directory: ./MAIN/vpc_with_ecs
 
     steps:
     # Write aws creds file
     - name: write secrets
       run: |
-          mkdir ~/.aws
-          echo $aws_profile > ~/.aws/credentials
+          /bin/bash mkdir ~/.aws
+          /bin/bash echo $aws_profile > ~/.aws/credentials
       env:
         aws_profile : ${{secrets.AWS_PROFILE}}
     
