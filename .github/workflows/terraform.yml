@@ -68,7 +68,6 @@ jobs:
       run: |
           mkdir ~/.aws
           echo $aws_profile > ~/.aws/credentials
-      shell: bash
       env:
         aws_profile : ${{secrets.AWS_PROFILE}}
     
