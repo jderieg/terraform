@@ -9,7 +9,7 @@ terraform {
 
 provider "aws" {
   region = var.region
-  # profile = var.aws_profile
-  access_key = ""
-  secret_key = ""
+  profile = var.aws_profile
+  # access_key = ""
+  # secret_key = ""
 }
