@@ -1,4 +1,5 @@
 terraform {
+  /*
   backend "remote" {
     hostname = "app.terraform.io"
     organization = "mellowfox"
@@ -6,6 +7,7 @@ terraform {
       name = "terraform"
     }
   }
+  */
   required_version = ">= 1.0.0"
   required_providers {
     aws = {
