@@ -1,10 +1,10 @@
 terraform {
   /*
-  backend "remote" {
-    hostname = "app.terraform.io"
-    organization = "mellowfox"
+  cloud {
+    organization = "example_corp"
+
     workspaces {
-      name = "terraform"
+      tags = ["app"]
     }
   }
   */

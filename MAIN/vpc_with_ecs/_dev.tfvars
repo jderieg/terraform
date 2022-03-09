@@ -1,4 +1,4 @@
-##### VPC App Vars
+##### VPC Vars
 vpc_name             = "dev_vpc"
 region               = "us-east-2"
 vpc_cidr             = "10.1.0.0/20"
@@ -12,7 +12,7 @@ aws_profile          = "default" # Your aws profile in the ~/.aws/credentials fi
 
 ##### Docker App Vars
 app_name             = "jdapp-dev" # Do not enter any spaces
-app_sources_cidr     = ["191.101.61.197/32"] # Specify a list of IPv4 IPs/CIDRs which can access app load balancers
+app_sources_cidr     = ["191.101.61.118/32"] # Specify a list of IPv4 IPs/CIDRs which can access app load balancers
 docker_app_image     = "elastichq/elasticsearch-hq:latest"
 docker_app_name      = "elastichq" # Whatever you want to call it
 docker_app_port      = 5000 # Port that your docker app is expecting connection on - keep unquoted or json will fail decoding
